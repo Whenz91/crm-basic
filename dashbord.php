@@ -1,10 +1,12 @@
 <?php
 session_start();
+require_once "error_handle.php";
 
 if(!isset($_SESSION['userName'])) {
     header("location: index.php?error=nologedin");
 }
-   
+$ErrorHandle = new ErrorHandle();
+
 ?><!DOCTYPE html>
 <html lang="hu">
 <head>
@@ -36,7 +38,7 @@ if(!isset($_SESSION['userName'])) {
                     if($_SESSION['userRank'] == 1) {
                         echo '
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Új munkatárs felvétele</a>
+                            <a class="nav-link" href="registration.php">Új munkatárs felvétele</a>
                         </li>
                         ';
                     }
@@ -49,6 +51,14 @@ if(!isset($_SESSION['userName'])) {
     </nav>
 
     <header class="container py-5">
+        <div class="col-7 mx-auto py-1">
+            <?php 
+                if(isset($_GET['message'])) {
+                    $ErrorHandle->messageCheck($_GET['message']);
+                }                    
+            ?>
+        </div>
+
         <div class="row">
             <a href="#" class="btn btn-lg btn-primary" role="button" aria-pressed="true"><i class='fas fa-address-card'></i> Új ügyfél felvétele</a>
         </div>
