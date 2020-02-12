@@ -37,8 +37,11 @@ class ErrorHandle {
                 case "logedout":
                     echo '<div class="alert alert-info" role="alert">Kijelentkeztél!</div>';
                     break;
-                case "addsuccess":
-                    echo '<div class="alert alert-success" role="alert">Új felhasználó felvéve!</div>';
+                case "regok":
+                    echo '<div class="alert alert-success" role="alert">Regisztráció sikeres!</div>';
+                    break;
+                case "regerror":
+                    echo '<div class="alert alert-danger" role="alert">Sikertelen regisztráció!</div>';
                     break;
                 default:
                     echo '<div class="alert alert-info" role="alert">Van valamink a számodra!</div>';
