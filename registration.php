@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once "add.php";
+require_once "getData.php";
 
 if(!isset($_SESSION['userName'])) {
     header("location: index.php?error=nologedin");
@@ -25,7 +26,7 @@ if(isset($_POST['submit'])) {
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/6c09380308.js" crossorigin="anonymous"></script>
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Főoldal - HannaInstCRM</title>
+    <title>Munkatársak - HannaInstCRM</title>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -61,50 +62,124 @@ if(isset($_POST['submit'])) {
     </nav>
 
     <main class="container mt-3">
-        <form method="POST" action="" class="col-8 mx-auto">
-            <div class="form-group">
-                <label for="name">Teljes név</label>
-                <input type="text" class="form-control" id="name" name="name">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#regNewUser">
+            Új munkatárs felvétele
+        </button>
+
+        <hr>
+
+        <div class="row mt-5 row-cols-1 row-cols-md-3 row-cols-lg-4" id="usersCardDeck">
+            <?php
+                $getData = new GetData();
+                $rows = $getData->getAllUsers();
+                foreach($rows as $row) {
+            ?>
+            <div class="col mb-4">
+                <div class="card h-100">
+                    <div class="card-header"><?php 
+                        switch($row['rank']) {
+                            case "1":
+                                echo 'Admin';
+                                break;
+                            case "2":
+                                echo 'Kereskedő';
+                                break;
+                            case "3":
+                                echo 'Szervizes';
+                                break;
+                            default:
+                                echo 'Hiba';
+                                break;
+                        } ?></div>
+                    <div class="card-body">
+                        <h5 class="card-title"><?php echo $row['name'] ?></h5>
+                        <p class="card-text">
+                            <i class='fas fa-city'></i> <?php echo $row['location'] ?>
+                        </p>
+                        <p class="card-text">
+                            <i class='fas fa-phone'></i> +36-<?php echo $row['phone'] ?>
+                        </p>
+                        <p class="card-text">
+                            <i class='fas fa-envelope'></i> <?php echo $row['email'] ?>
+                        </p>
+                        <button type="button" class="btn btn-success" name="edit" id="<?php echo $row['id'] ?>"><i class='fas fa-edit'></i></button>
+                        <button type="button" class="btn btn-danger" name="delete" id="<?php echo $row['id'] ?>"><i class='fas fa-trash-alt'></i></button>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="email">Email cím</label>
-                <input type="email" class="form-control" id="email" name="email">
-            </div>
-            <div class="form-group">
-                <label for="phone">Telefonszám</label>
-                <input type="text" class="form-control" id="phone" name="phone">
-            </div>
-            <div class="form-group">
-                <label for="city">Város</label>
-                <input type="text" class="form-control" id="city" name="city">
-            </div>
-            <div class="form-group">
-                <label for="password">Jelszó</label>
-                <input type="password" class="form-control" id="password" name="password">
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="userRank" id="admin" value="1" checked>
-                <label class="form-check-label" for="admin">Admin</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="userRank" id="trader" value="2">
-                <label class="form-check-label" for="trader">Kereskedő</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="userRank" id="mechanic" value="3">
-                <label class="form-check-label" for="mechanic">Szervizes</label>
-            </div>
-            <small class="form-text text-muted">
-                Az Admin rank a legmagasabb és mindent megtehet. A kereskedő és a szervizes korlátozott jogokkal rendelkezik.
-            </small>
-            <br>
-            <button type="submit" id="submit" name="submit" class="btn btn-primary">Munkatárs felvétele</button>
-        </form>
+            <?php
+                };
+            ?>
+        </div>
+
     </main>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="regNewUser" tabindex="-1" role="dialog" aria-labelledby="registrataeNewUser" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="registrataeNewUser">Új munkatárs felvétele</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form method="POST" action="">
+                <div class="form-group">
+                    <label for="name">Teljes név</label>
+                    <input type="text" class="form-control" id="name" name="name">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email cím</label>
+                    <input type="email" class="form-control" id="email" name="email">
+                </div>
+                <div class="form-group">
+                    <label for="phone">Telefonszám</label>
+                    <input type="text" class="form-control" id="phone" name="phone">
+                </div>
+                <div class="form-group">
+                    <label for="city">Város</label>
+                    <input type="text" class="form-control" id="city" name="city">
+                </div>
+                <div class="form-group">
+                    <label for="password">Jelszó</label>
+                    <input type="password" class="form-control" id="password" name="password">
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="userRank" id="admin" value="1" checked>
+                    <label class="form-check-label" for="admin">Admin</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="userRank" id="trader" value="2">
+                    <label class="form-check-label" for="trader">Kereskedő</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="userRank" id="mechanic" value="3">
+                    <label class="form-check-label" for="mechanic">Szervizes</label>
+                </div>
+                <small class="form-text text-muted">
+                    Az Admin rank a legmagasabb és mindent megtehet. A kereskedő és a szervizes korlátozott jogokkal rendelkezik.
+                </small>
+                <br>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Ablak bezárása</button>
+            <button type="submit" id="submit" name="submit" class="btn btn-primary">Munkatárs felvétele</button>
+        </div>
+        </div>
+    </div>
+    </div>
     
 
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script
+    src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+    crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <!-- <script src="main.js"></script> -->
 </body>
 </html>
