@@ -1,15 +1,28 @@
 <?php 
-require_once "login.php";
+include_once "config/Database.php";
+include_once "objects/Users.php";
+require_once "users/login.php";
 require_once "error_handle.php";
+// include database and object files
 
-if(isset($_POST['submit'])) {
-    $email = strip_tags(strtolower(trim($_POST["email"])));
-    $password = $_POST['password'];
+if(isset($_POST["submit"])) {
+    // instantiate database and product object
+    $database = new Database();
+    $db = $database->getConnection();
     
-    $Login = new Login();
-    $Login->loginCheck($email, $password);
+    // initialize object
+    $user = new Users($db);
+
+    // init post data
+    $email = $_POST["email"];
+    $password = $_POST["password"];
+
+    //call login function
+    login($user, $email, $password);
 }
+
 $ErrorHandle = new ErrorHandle();
+
 ?><!DOCTYPE html>
 <html lang="hu">
 <head>
