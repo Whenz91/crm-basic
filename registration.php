@@ -1,7 +1,5 @@
 <?php
 session_start();
-require_once "add.php";
-require_once "getData.php";
 
 if(!isset($_SESSION['userName'])) {
     header("location: index.php?error=nologedin");
@@ -68,49 +66,7 @@ if(isset($_POST['submit'])) {
 
         <hr>
 
-        <div class="row mt-5 row-cols-1 row-cols-md-3 row-cols-lg-4" id="usersCardDeck">
-            <?php
-                $getData = new GetData();
-                $rows = $getData->getAllUsers();
-                foreach($rows as $row) {
-            ?>
-            <div class="col mb-4">
-                <div class="card h-100">
-                    <div class="card-header"><?php 
-                        switch($row['rank']) {
-                            case "1":
-                                echo 'Admin';
-                                break;
-                            case "2":
-                                echo 'Kereskedő';
-                                break;
-                            case "3":
-                                echo 'Szervizes';
-                                break;
-                            default:
-                                echo 'Hiba';
-                                break;
-                        } ?></div>
-                    <div class="card-body">
-                        <h5 class="card-title"><?php echo $row['name'] ?></h5>
-                        <p class="card-text">
-                            <i class='fas fa-city'></i> <?php echo $row['location'] ?>
-                        </p>
-                        <p class="card-text">
-                            <i class='fas fa-phone'></i> +36-<?php echo $row['phone'] ?>
-                        </p>
-                        <p class="card-text">
-                            <i class='fas fa-envelope'></i> <?php echo $row['email'] ?>
-                        </p>
-                        <button type="button" class="btn btn-success" name="edit" id="<?php echo $row['id'] ?>"><i class='fas fa-edit'></i></button>
-                        <button type="button" class="btn btn-danger" name="delete" id="<?php echo $row['id'] ?>"><i class='fas fa-trash-alt'></i></button>
-                    </div>
-                </div>
-            </div>
-            <?php
-                };
-            ?>
-        </div>
+        <div class="row mt-5 row-cols-1 row-cols-md-3 row-cols-lg-4" id="usersCardDeck"></div>
 
     </main>
 
@@ -140,8 +96,8 @@ if(isset($_POST['submit'])) {
                     <input type="text" class="form-control" id="phone" name="phone">
                 </div>
                 <div class="form-group">
-                    <label for="city">Város</label>
-                    <input type="text" class="form-control" id="city" name="city">
+                    <label for="location">Város</label>
+                    <input type="text" class="form-control" id="location" name="location">
                 </div>
                 <div class="form-group">
                     <label for="password">Jelszó</label>
@@ -180,6 +136,6 @@ if(isset($_POST['submit'])) {
     crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-    <!-- <script src="main.js"></script> -->
+    <script src="main.js"></script>
 </body>
 </html>
