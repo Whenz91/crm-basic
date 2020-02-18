@@ -4,18 +4,6 @@ session_start();
 if(!isset($_SESSION['userName'])) {
     header("location: index.php?error=nologedin");
 }
-if(isset($_POST['submit'])) {
-    $name = strip_tags($_POST["name"]);
-    $email = strip_tags(strtolower(trim($_POST["email"])));
-    $phone = strip_tags($_POST["phone"]);
-    $location = strip_tags($_POST["city"]);
-    $password = $_POST["password"];
-    $rank = $_POST["userRank"];
-    
-    $AddUser = new Add();
-    $AddUser->addUser($name, $email, $phone, $location, $password, $rank);
-}
-
 ?><!DOCTYPE html>
 <html lang="hu">
 <head>
@@ -60,7 +48,7 @@ if(isset($_POST['submit'])) {
     </nav>
 
     <main class="container mt-3">
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#regNewUser">
+        <button type="button" id="addUser" class="btn btn-primary" data-toggle="modal" data-target="#userModal">
             Új munkatárs felvétele
         </button>
 
@@ -72,36 +60,37 @@ if(isset($_POST['submit'])) {
 
 
     <!-- Modal -->
-    <div class="modal fade" id="regNewUser" tabindex="-1" role="dialog" aria-labelledby="registrataeNewUser" aria-hidden="true">
+    <div class="modal fade" id="userModal" tabindex="-1" role="dialog" aria-labelledby="userModalTitle" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title" id="registrataeNewUser">Új munkatárs felvétele</h5>
+            <h5 class="modal-title" id="userModalTitle">Új munkatárs felvétele</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
             </button>
         </div>
         <div class="modal-body">
-            <form method="POST" action="">
+            <form method="POST" id="userForm">
+                <input type="text" class="d-none" id="hiddenId" value="">
                 <div class="form-group">
                     <label for="name">Teljes név</label>
-                    <input type="text" class="form-control" id="name" name="name">
+                    <input type="text" class="form-control" id="name" name="name" value="">
                 </div>
                 <div class="form-group">
                     <label for="email">Email cím</label>
-                    <input type="email" class="form-control" id="email" name="email">
+                    <input type="email" class="form-control" id="email" name="email" value="">
                 </div>
                 <div class="form-group">
                     <label for="phone">Telefonszám</label>
-                    <input type="text" class="form-control" id="phone" name="phone">
+                    <input type="text" class="form-control" id="phone" name="phone" value="">
                 </div>
                 <div class="form-group">
                     <label for="location">Város</label>
-                    <input type="text" class="form-control" id="location" name="location">
+                    <input type="text" class="form-control" id="location" name="location" value="">
                 </div>
                 <div class="form-group">
                     <label for="password">Jelszó</label>
-                    <input type="password" class="form-control" id="password" name="password">
+                    <input type="password" class="form-control" id="password" name="password" value="">
                 </div>
                 <div class="form-check form-check-inline">
                     <input class="form-check-input" type="radio" name="userRank" id="admin" value="1" checked>
@@ -123,7 +112,8 @@ if(isset($_POST['submit'])) {
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Ablak bezárása</button>
-            <button type="submit" id="submit" name="submit" class="btn btn-primary">Munkatárs felvétele</button>
+            <button type="button" id="create" class="btn btn-primary">Munkatárs felvétele</button>
+            <button type="button" id="update" class="btn btn-primary d-none">Adato módosítása</button>
         </div>
         </div>
     </div>
