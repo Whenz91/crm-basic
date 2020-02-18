@@ -15,7 +15,7 @@ function login($user, $email, $password) {
 
         $user->login($email);
 
-        //$password = md5($password);
+        $password = md5($password);
         
         if($user->name != null) {
             if($user->password == $password) {
