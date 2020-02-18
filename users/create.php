@@ -27,7 +27,7 @@ if(
     !empty($data->phone) &&
     !empty($data->location) &&
     !empty($data->password) &&
-    !empty($data->userRank)
+    !empty($data->rank)
 ){
  
     // set user property values
@@ -36,7 +36,7 @@ if(
     $user->phone = $data->phone;
     $user->location = $data->location;
     $user->password = $data->password;
-    $user->rank = $data->userRank;
+    $user->rank = $data->rank;
  
     // create the user
     if($user->create()){
