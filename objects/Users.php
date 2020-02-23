@@ -57,6 +57,30 @@ class Users {
         
     }
 
+    // delete the user
+    function delete() {
+    
+        // delete query
+        $query = "DELETE FROM " . $this->table_name . " WHERE id = ?";
+    
+        // prepare query
+        $stmt = $this->conn->prepare($query);
+    
+        // sanitize
+        $this->id=htmlspecialchars(strip_tags($this->id));
+    
+        // bind id of record to delete
+        $stmt->bindParam(1, $this->id);
+    
+        // execute query
+        if($stmt->execute()) {
+            return true;
+        }
+    
+        return false;
+        
+    }
+
 
     // read login user data
     function login($email) {
@@ -99,7 +123,7 @@ class Users {
     }
 
     // used when filling up the update user form
-    function readOne(){
+    function readOne() {
     
         // query to read single record
         $query = "SELECT * FROM " . $this->table_name . "
@@ -116,7 +140,7 @@ class Users {
     
         // get retrieved row
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
-    
+
         // set values to object properties
         $this->name = $row['name'];
         $this->email = $row['email'];
@@ -126,8 +150,8 @@ class Users {
         $this->rank = $row['rank'];
     }
 
-    // update the product
-    function update(){
+    // update the user profile
+    function update() {
     
         // update query
         $query = "UPDATE " . $this->table_name . "
