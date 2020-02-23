@@ -28,7 +28,7 @@ if(
     !empty($data->location) &&
     !empty($data->password) &&
     !empty($data->rank)
-){
+) {
  
     // set user property values
     $user->name = $data->name;
@@ -39,7 +39,7 @@ if(
     $user->rank = $data->rank;
  
     // create the user
-    if($user->create()){
+    if($user->create()) {
  
         // set response code - 201 created
         http_response_code(201);
@@ -49,7 +49,7 @@ if(
     }
  
     // if unable to create the user, tell the user
-    else{
+    else {
  
         // set response code - 503 service unavailable
         http_response_code(503);
@@ -60,7 +60,7 @@ if(
 }
  
 // tell the user data is incomplete
-else{
+else {
  
     // set response code - 400 bad request
     http_response_code(400);
