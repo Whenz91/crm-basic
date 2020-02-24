@@ -31,7 +31,6 @@ if($user->name!=null){
         "email" => $user->email,
         "phone" => $user->phone,
         "location" => $user->location,
-        "password" => $user->password,
         "rank" => $user->rank
     );
  
