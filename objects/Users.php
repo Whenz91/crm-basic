@@ -146,7 +146,6 @@ class Users {
         $this->email = $row['email'];
         $this->phone = $row['phone'];
         $this->location = $row['location'];
-        $this->password = $row['password'];
         $this->rank = $row['rank'];
     }
 
