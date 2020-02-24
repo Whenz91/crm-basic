@@ -7,6 +7,7 @@ $(document).ready(function() {
 
     // set the modal title and buttons for create new user
     $("#addUser").click(function() {
+        emptyAllInput();
         $("#userModalTitle").text("Új munkatárs felvétele");
         $("#create").removeClass("d-none");
         $("#update").addClass("d-none");
@@ -15,8 +16,7 @@ $(document).ready(function() {
     $("#create").click(function() {
         createNewUser();
         $('#userModal').modal('hide');
-    });
-    
+    }); 
 
     // read the clicked userprofile data from db and open modal
     editItem = function(id) {
@@ -28,20 +28,28 @@ $(document).ready(function() {
     // send updated user data to the server
     $("#update").click(function() {
         updateUserData();
+        emptyAllInput();
         $('#userModal').modal('hide');
     });
 
     // send delete request to server
     deleteItem = function(id) {
-        if(confirm("Valóban törölni akarod a felhasznlót?")) {
+        // if(confirm("Valóban törölni akarod a felhasznlót?")) {
+        //     deleteUser(id);
+        // }
+        customConfirm("Törlés", "bg-danger", "Valóban törölni akarod a felhasználót?");
+        $("#yes").click(function() {
             deleteUser(id);
-        }
+            $("#customConfirmation").hide();
+        });
+        $("#no").click(function() {
+            $("#customConfirmation").hide();
+        });
     }
 
     //show password
     $("#showPass").click(function() {
         showPassword();
-        console.log("helo");
     });
 
     // collect data into one json and send back the server
@@ -75,6 +83,14 @@ $(document).ready(function() {
         });	
     }
 
+    // custom confirmation window
+    function customConfirm(title, titleBgClass, message) {
+        $("#customConfirmation .confirm-title").text(title);
+        $("#customConfirmation .confirm-title").addClass(titleBgClass);
+        $("#customConfirmation .confirm-message").text(message);
+        $("#customConfirmation").show();
+    }
+
     // delete user from database
     function deleteUser(id) {
         $.ajax({
@@ -91,6 +107,17 @@ $(document).ready(function() {
                 alert("Hiba történt az adatbázis elérésénél.");
             }
         });
+    }
+
+    // empty all form input value and radio set in first radio checked
+    function emptyAllInput() {
+        $('#hiddenId').val('');
+        $('#name').val('');
+        $('#email').val('');
+        $('#phone').val('');
+        $('#location').val('');
+        $('#password').val('');
+        $("#userForm").find(":radio[name=userRank][value='1']").prop("checked", true);
     }
 
     // get all user data from the db and show the front-end
@@ -158,7 +185,6 @@ $(document).ready(function() {
                 $('#email').val(data.email);
                 $('#phone').val(data.phone);
                 $('#location').val(data.location);
-                $('#password').val(data.password);
                 switch (data.rank) {
                     case "1":
                         $("#userForm").find(":radio[name=userRank][value='1']").prop("checked", true);
