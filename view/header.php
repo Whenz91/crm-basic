@@ -1,4 +1,10 @@
-<!DOCTYPE html>
+<?php
+session_start();
+
+if(!isset($_SESSION['userName'])) {
+    header("location: index.php?error=nologedin");
+}
+?><!DOCTYPE html>
 <html lang="hu">
 <head>
     <meta charset="UTF-8">
@@ -22,6 +28,9 @@
                 break;
                 case 'profil.php':
                     echo "Profilom - HannaInstCRM";
+                break;
+                case 'customer.php':
+                    echo "Ügyfél profil - HannaInstCRM";
                 break;
                 default:
                     echo "HannaInstCRM";
