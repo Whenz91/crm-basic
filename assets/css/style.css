@@ -17,3 +17,21 @@
 .confirm-message {
     padding: 0 10px;
 }
+
+.customer-main {
+    display: grid;
+    height: 100vh;
+    grid-template-columns: 1fr 2fr;
+}
+.side-indicator-bar {
+    background-color: #f0f0f0;
+}
+.back-link {
+    display: block;
+    font-size: 1.3em;
+    text-align: center;
+    color: #333;
+}
+.form-side {
+    padding: 20px 25px;
+}
