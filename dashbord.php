@@ -1,11 +1,4 @@
 <?php
-session_start();
-require_once "error_handle.php";
-
-if(!isset($_SESSION['userName'])) {
-    header("location: index.php?error=nologedin");
-}
-
 include "view/header.php";
 ?>
 
@@ -14,7 +7,7 @@ include "view/header.php";
 
     <header class="container py-5">
         <div class="row">
-            <a href="#" class="btn btn-lg btn-primary" role="button" aria-pressed="true"><i class='fas fa-address-card'></i> Új ügyfél felvétele</a>
+            <a href="customer.php" class="btn btn-lg btn-primary" role="button" aria-pressed="true"><i class="fas fa-user-plus"></i> Új ügyfél felvétele</a>
         </div>
 
         <div class="row">
@@ -26,59 +19,65 @@ include "view/header.php";
     </header>
 
     <main class="container">
-        <div class="row">
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th scope="col">Cég</th>
-                        <th scope="col">Kontakt</th>
-                        <th scope="col">Telefon</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">&nbsp;</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td></td>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>
-                            <a href="#" class="btn btn-success" role="button" aria-pressed="true"><i class='fas fa-edit'></i></a>
-                            <a href="#" class="btn btn-danger" role="button" aria-pressed="true"><i class='fas fa-trash-alt'></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                        <td>
-                            <a href="#" class="btn btn-success" role="button" aria-pressed="true"><i class='fas fa-edit'></i></a>
-                            <a href="#" class="btn btn-danger" role="button" aria-pressed="true"><i class='fas fa-trash-alt'></i></a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <nav aria-label="Page navigation example">
-                <ul class="pagination">
-                    <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Previous">
-                            <span aria-hidden="true">&laquo;</span>
-                        </a>
-                    </li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
+    <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4">
+        <div class="col mb-4">
+            <div class="card h-100">
+                <div class="card-header"><i class="fas fa-circle text-success" title="Aktív"></i> Cég neve</div>
+                <div class="card-body">
+                    <h5 class="card-title">Kontakt személy neve</h5>
+                    <p class="card-text"><i class="fas fa-industry"></i> Iparág</p>
+                    <p class="card-text"><i class='fas fa-city'></i> Város</p>
+                    <p class="card-text"><i class="fas fa-briefcase"></i> Poziciója</p>
+                    <p class="card-text"><i class='fas fa-phone'></i> Telefonszáma</p>
+                    <p class="card-text"><i class='fas fa-envelope'></i> Email címe</p>
+                    <p class="card-text"></p>
+                </div>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-primary mr-2 show-customer" data-id="" title="Adatok megtekintése"><i class="fas fa-user"></i></i></button>
+                    <button type="button" class="btn btn-success edit-customer" data-id="" title="Adatok szerkesztése"><i class="fas fa-user-edit"></i></button>
+                    <button type="button" class="btn btn-danger ml-2 delete-customer" data-id="" title="Adatok törlése"><i class="fas fa-user-minus"></i></button>
+                </div>
+            </div>
         </div>
+        <div class="col mb-4">
+            <div class="card h-100">
+                <div class="card-header"><i class="fas fa-circle text-danger" title="Passzív"></i> Cég neve</div>
+                <div class="card-body">
+                    <h5 class="card-title">Kontakt személy neve</h5>
+                    <p class="card-text"><i class="fas fa-industry"></i> Iparág</p>
+                    <p class="card-text"><i class='fas fa-city'></i> Város</p>
+                    <p class="card-text"><i class="fas fa-briefcase"></i> Poziciója</p>
+                    <p class="card-text"><i class='fas fa-phone'></i> Telefonszáma</p>
+                    <p class="card-text"><i class='fas fa-envelope'></i> Email címe</p>
+                    <p class="card-text"></p>
+                </div>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-primary mr-2"><i class="fas fa-user"></i></i></button>
+                    <button type="button" class="btn btn-success"><i class="fas fa-user-edit"></i></button>
+                    <button type="button" class="btn btn-danger ml-2"><i class="fas fa-user-minus"></i></button>
+                </div>
+            </div>
+        </div>
+        <div class="col mb-4">
+            <div class="card h-100">
+                <div class="card-header"><i class="fas fa-circle text-dark" title="Inaktív"></i> Cég neve</div>
+                <div class="card-body">
+                    <h5 class="card-title">Kontakt személy neve</h5>
+                    <p class="card-text"><i class="fas fa-industry"></i> Iparág</p>
+                    <p class="card-text"><i class='fas fa-city'></i> Város</p>
+                    <p class="card-text"><i class="fas fa-briefcase"></i> Poziciója</p>
+                    <p class="card-text"><i class='fas fa-phone'></i> Telefonszáma</p>
+                    <p class="card-text"><i class='fas fa-envelope'></i> Email címe</p>
+                    <p class="card-text"></p>
+                </div>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-primary mr-2"><i class="fas fa-user"></i></i></button>
+                    <button type="button" class="btn btn-success"><i class="fas fa-user-edit"></i></button>
+                    <button type="button" class="btn btn-danger ml-2"><i class="fas fa-user-minus"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
     </main>
 
 
