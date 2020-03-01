@@ -4,19 +4,19 @@ include "view/header.php";
 
 <main id="app" class="customer-main">
     <div class="side-indicator-bar">
-        <ul id="v-pills-tab">
-            <li><a href="#">Kontakt infok</a></li>
-            <li><a href="#">Cég alap adatok</a></li>
-            <li><a href="#">Igény felmérés</a></li>
-            <li><a href="#">Konkurencia felmérés</a></li>
-            <li><a href="#">Ügyfél elégedetség</a></li>
-            <li><a href="#">Észrevételek, megjegyzések</a></li>
+        <ul class="steps-list">
+            <li class="step">Kontakt infok</li>
+            <li class="step">Cég alap adatok</li>
+            <li class="step">Igény felmérés</li>
+            <li class="step">Konkurencia felmérés</li>
+            <li class="step">Ügyfél elégedetség</li>
+            <li class="step">Észrevételek, megjegyzések</li>
         </ul>
         <a href="dashbord.php" class="back-link">&#8592; Mentés és vissza a főoldalra</a>
     </div>
 
     <div class="form-side">
-        <form action="" method="POST">
+        <form action="" method="POST" id="customerForm">
             <div class="form-tab">
                 <h2>Kontakt személy adatai</h2>
                 <div class="form-group">
@@ -44,7 +44,7 @@ include "view/header.php";
                     <input type="text" class="form-control" id="companyName" name="companyName" placeholder="Minta Kft" value="">
                 </div>
                 <div class="form-group">
-                    <label for="companyAddress">Cím</label>
+                    <label for="companyAddress">Cég címe</label>
                     <input type="text" class="form-control" id="companyAddress" name="companyAddress" placeholder="Budapest" value="">
                     <small>Elég a város neve is.</small>
                 </div>
@@ -58,15 +58,15 @@ include "view/header.php";
                 <h2>Igény felmérés</h2>
                 <div class="form-group">
                     <label for="whatMeasure">Milyen méréseket végeznek most?</label>
-                    <textarea name="whatMeasure" id="whatMeasure" cols="30" rows="10"></textarea>
+                    <textarea name="whatMeasure" id="whatMeasure" cols="30" rows="5" class="form-control"></textarea>
                 </div>
                 <div class="form-group">
                     <label for="howMeasure">Hogyan végzik most a méréseket?</label>
-                    <textarea name="howMeasure" id="howMeasure" cols="30" rows="10"></textarea>
+                    <textarea name="howMeasure" id="howMeasure" cols="30" rows="5" class="form-control"></textarea>
                 </div>
                 <div class="form-group">
                     <label for="whatInterested">Milyen műszerek érdeklik?</label>
-                    <textarea name="whatInterested" id="whatInterested" cols="30" rows="10"></textarea>
+                    <textarea name="whatInterested" id="whatInterested" cols="30" rows="5" class="form-control"></textarea>
                 </div>
             </div>
 
@@ -74,11 +74,11 @@ include "view/header.php";
                 <h2>Konkurencia felmérés</h2>
                 <div class="form-group">
                     <label for="competitorsName">Melyik cég(ek) műszereit használják most?</label>
-                    <textarea name="competitorsName" id="competitorsName" cols="30" rows="10"></textarea>
+                    <textarea name="competitorsName" id="competitorsName" cols="30" rows="5" class="form-control"></textarea>
                 </div>
                 <div class="form-group">
                     <label for="competitorsProducts">Milyen műszereket használnak?</label>
-                    <textarea name="competitorsProducts" id="competitorsProducts" cols="30" rows="10"></textarea>
+                    <textarea name="competitorsProducts" id="competitorsProducts" cols="30" rows="5" class="form-control"></textarea>
                 </div>
             </div>
 
@@ -86,16 +86,16 @@ include "view/header.php";
                 <h2>Ügyfél elégedetség</h2>
                 <div class="form-group">
                     <label for="whatUsed">Milyen műszereket használnak a cégünktől?</label>
-                    <textarea name="whatUsed" id="whatUsed" cols="30" rows="10"></textarea>
+                    <textarea name="whatUsed" id="whatUsed" cols="30" rows="5" class="form-control"></textarea>
                 </div>
                 <div class="form-group">
                     <label for="satisfaction">Mennyire elégedettek a cégünkkel/termékeinkkel?</label>
-                    <input type="number" id="satisfaction" name="satisfaction">
+                    <input type="number" id="satisfaction" name="satisfaction" class="form-control" min="1" max="5">
                     <small>1-től 5-ig értékelje, ahol 1 a legrosszabb és 5 a legjobb</small>
                 </div>
                 <div class="form-group">
                     <label for="canWeHelp">Miben tudnánk segíteni nekik?</label>
-                    <textarea name="canWeHelp" id="canWeHelp" cols="30" rows="10"></textarea>
+                    <textarea name="canWeHelp" id="canWeHelp" cols="30" rows="5" class="form-control"></textarea>
                 </div>
             </div>
 
@@ -103,13 +103,13 @@ include "view/header.php";
                 <h2>Észrevételek, megjegyzések</h2>
                 <div class="form-group">
                     <label for="comment">Megjegyzések</label>
-                    <textarea name="comment" id="comment" cols="30" rows="10"></textarea>
+                    <textarea name="comment" id="comment" cols="30" rows="10" class="form-control"></textarea>
                 </div>
             </div>
 
             <div class="form-footer">
-                <button type="button" id="prevBtn" onclick="nextPrev(-1)">Vissza</button>
-                <button type="button" id="nextBtn" onclick="nextPrev(1)">Követekező</button>
+                <button type="button" id="prevBtn" class="btn btn-outline-dark" onclick="nextPrev(-1)">Vissza</button>
+                <button type="button" id="nextBtn" class="btn btn-primary" onclick="nextPrev(1)">Követekező</button>
             </div>
         </form>
     </div>
