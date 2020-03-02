@@ -35,6 +35,7 @@ include "view/header.php";
                     <label for="email">Email cím</label>
                     <input type="email" class="form-control" id="email" name="email" placeholder="k.istvan@gmail.com" value="">
                 </div>
+                <input type="text" name="userId" id="userId" value="<?php echo $_SESSION["userId"] ?>" class="d-none">
             </div>
 
             <div class="form-tab">
@@ -104,6 +105,27 @@ include "view/header.php";
                 <div class="form-group">
                     <label for="comment">Megjegyzések</label>
                     <textarea name="comment" id="comment" cols="30" rows="10" class="form-control"></textarea>
+                </div>
+                <div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="status" id="active" value="1" checked>
+                        <label class="form-check-label" for="active">
+                            Aktív
+                        </label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="status" id="passive" value="2">
+                        <label class="form-check-label" for="passive">
+                            Passzív
+                        </label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="status" id="inactive" value="3">
+                        <label class="form-check-label" for="inactive">
+                            Inaktív
+                        </label>
+                    </div>
+                    <small>Az ügyfél érdeklődése alapján melyik csoportba sorolható?</small>
                 </div>
             </div>
 
