@@ -19,65 +19,7 @@ include "view/header.php";
     </header>
 
     <main class="container">
-    <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4">
-        <div class="col mb-4">
-            <div class="card h-100">
-                <div class="card-header"><i class="fas fa-circle text-success" title="Aktív"></i> Cég neve</div>
-                <div class="card-body">
-                    <h5 class="card-title">Kontakt személy neve</h5>
-                    <p class="card-text"><i class="fas fa-industry"></i> Iparág</p>
-                    <p class="card-text"><i class='fas fa-city'></i> Város</p>
-                    <p class="card-text"><i class="fas fa-briefcase"></i> Poziciója</p>
-                    <p class="card-text"><i class='fas fa-phone'></i> Telefonszáma</p>
-                    <p class="card-text"><i class='fas fa-envelope'></i> Email címe</p>
-                    <p class="card-text"></p>
-                </div>
-                <div class="btn-group">
-                    <button type="button" class="btn btn-primary mr-2 show-customer" data-id="" title="Adatok megtekintése"><i class="fas fa-user"></i></i></button>
-                    <button type="button" class="btn btn-success edit-customer" data-id="" title="Adatok szerkesztése"><i class="fas fa-user-edit"></i></button>
-                    <button type="button" class="btn btn-danger ml-2 delete-customer" data-id="" title="Adatok törlése"><i class="fas fa-user-minus"></i></button>
-                </div>
-            </div>
-        </div>
-        <div class="col mb-4">
-            <div class="card h-100">
-                <div class="card-header"><i class="fas fa-circle text-danger" title="Passzív"></i> Cég neve</div>
-                <div class="card-body">
-                    <h5 class="card-title">Kontakt személy neve</h5>
-                    <p class="card-text"><i class="fas fa-industry"></i> Iparág</p>
-                    <p class="card-text"><i class='fas fa-city'></i> Város</p>
-                    <p class="card-text"><i class="fas fa-briefcase"></i> Poziciója</p>
-                    <p class="card-text"><i class='fas fa-phone'></i> Telefonszáma</p>
-                    <p class="card-text"><i class='fas fa-envelope'></i> Email címe</p>
-                    <p class="card-text"></p>
-                </div>
-                <div class="btn-group">
-                    <button type="button" class="btn btn-primary mr-2"><i class="fas fa-user"></i></i></button>
-                    <button type="button" class="btn btn-success"><i class="fas fa-user-edit"></i></button>
-                    <button type="button" class="btn btn-danger ml-2"><i class="fas fa-user-minus"></i></button>
-                </div>
-            </div>
-        </div>
-        <div class="col mb-4">
-            <div class="card h-100">
-                <div class="card-header"><i class="fas fa-circle text-dark" title="Inaktív"></i> Cég neve</div>
-                <div class="card-body">
-                    <h5 class="card-title">Kontakt személy neve</h5>
-                    <p class="card-text"><i class="fas fa-industry"></i> Iparág</p>
-                    <p class="card-text"><i class='fas fa-city'></i> Város</p>
-                    <p class="card-text"><i class="fas fa-briefcase"></i> Poziciója</p>
-                    <p class="card-text"><i class='fas fa-phone'></i> Telefonszáma</p>
-                    <p class="card-text"><i class='fas fa-envelope'></i> Email címe</p>
-                    <p class="card-text"></p>
-                </div>
-                <div class="btn-group">
-                    <button type="button" class="btn btn-primary mr-2"><i class="fas fa-user"></i></i></button>
-                    <button type="button" class="btn btn-success"><i class="fas fa-user-edit"></i></button>
-                    <button type="button" class="btn btn-danger ml-2"><i class="fas fa-user-minus"></i></button>
-                </div>
-            </div>
-        </div>
-    </div>
+        <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4" id="customerCardDeck"></div>
     </main>
 
 
