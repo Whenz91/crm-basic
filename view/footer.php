@@ -12,6 +12,7 @@
             switch ($endPageUrlPices) {
                 case 'dashbord.php':
                     echo '<script src="assets/js/customerRead.js"></script>';
+                    echo '<script src="assets/js/customerProfile.js"></script>';
                 break;
                 case 'registration.php':
                     echo '<script src="assets/js/main.js"></script>';

@@ -9,7 +9,7 @@ $(document).ready(function() {
             url: "http://localhost/hanna-crm/customers/read.php",
             success: function(data) {
                 var records = data.records;
-                var values = "";
+                var values = `<div class="row row-cols-1 row-cols-md-3 row-cols-lg-4">`;
                 var status = "";
                 var statusClass = "";
 
@@ -52,6 +52,7 @@ $(document).ready(function() {
                     </div>
                     `;
                 }
+                values += '</div>';
                 $("#customerCardDeck").html(values);
             },
             error: function(xhr, resp, text) {
