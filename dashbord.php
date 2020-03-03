@@ -5,7 +5,7 @@ include "view/header.php";
     <?php include "view/nav.php"; ?>
     
 
-    <header class="container py-5">
+    <header class="container py-5" id="dashbordHeader">
         <div class="row">
             <a href="customer.php" class="btn btn-lg btn-primary" role="button" aria-pressed="true"><i class="fas fa-user-plus"></i> Új ügyfél felvétele</a>
         </div>
@@ -18,8 +18,9 @@ include "view/header.php";
         </div>
     </header>
 
-    <main class="container">
-        <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4" id="customerCardDeck"></div>
+    <main id="mainContent">
+        <div class="container" id="customerCardDeck"></div>
+        <div class="container-fluid" id="customerProfile"></div>
     </main>
 
 
