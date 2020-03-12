@@ -116,6 +116,30 @@ class Customers {
         
     }
 
+    // delete the customer
+    function delete() {
+    
+        // delete query
+        $query = "DELETE FROM " . $this->table_name . " WHERE id = ?";
+    
+        // prepare query
+        $stmt = $this->conn->prepare($query);
+    
+        // sanitize
+        $this->id=htmlspecialchars(strip_tags($this->id));
+    
+        // bind id of record to delete
+        $stmt->bindParam(1, $this->id);
+    
+        // execute query
+        if($stmt->execute()) {
+            return true;
+        }
+    
+        return false;
+        
+    }
+
     // read all customers data
     function read() {
     
@@ -205,6 +229,44 @@ class Customers {
         $this->created_date = $row["created_date"];
         $this->modified = $row["modified"];
     }
+
+    // search customer
+    function search($keywords){
+    
+        // select all query
+        $query = "SELECT 
+                    id, 
+                    customer_name, 
+                    customer_post, 
+                    customer_phone, 
+                    customer_email, 
+                    company_name, 
+                    company_address, 
+                    company_industry, 
+                    status FROM " . $this->table_name . " 
+                WHERE
+                    customer_name LIKE ? OR 
+                    company_name LIKE ? OR 
+                    company_address LIKE ?";
+    
+        // prepare query statement
+        $stmt = $this->conn->prepare($query);
+    
+        // sanitize
+        $keywords = htmlspecialchars(strip_tags($keywords));
+        $keywords = "%{$keywords}%";
+    
+        // bind
+        $stmt->bindParam(1, $keywords);
+        $stmt->bindParam(2, $keywords);
+        $stmt->bindParam(3, $keywords);
+    
+        // execute query
+        $stmt->execute();
+    
+        return $stmt;
+    }
+
 
      // update the customer profile
      function update() {
