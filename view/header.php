@@ -26,11 +26,11 @@ if(!isset($_SESSION['userName'])) {
                 case 'registration.php':
                     echo "Munkatársak - HannaInstCRM";
                 break;
-                case 'profil.php':
+                case 'profile.php':
                     echo "Profilom - HannaInstCRM";
                 break;
                 case 'customer.php':
-                    echo "Ügyfél profil - HannaInstCRM";
+                    echo "Ügyfél regisztráció - HannaInstCRM";
                 break;
                 default:
                     echo "HannaInstCRM";

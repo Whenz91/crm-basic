@@ -16,8 +16,8 @@
                 case 'registration.php':
                     echo '<script src="assets/js/main.js"></script>';
                 break;
-                case 'profil.php':
-                    echo '';
+                case 'profile.php':
+                    echo '<script src="assets/js/profile.js"></script>';
                 break;
                 case 'customer.php':
                     echo '<script src="assets/js/customerForm.js"></script>';

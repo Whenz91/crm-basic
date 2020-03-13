@@ -12,7 +12,7 @@ include "view/header.php";
             <li class="step">Ügyfél elégedetség</li>
             <li class="step">Észrevételek, megjegyzések</li>
         </ul>
-        <a href="dashbord.php" class="back-link">&#8592; Mentés és vissza a főoldalra</a>
+        <a href="dashbord.php" class="back-link">&#8592; Vissza a főoldalra</a>
     </div>
 
     <div class="form-side">

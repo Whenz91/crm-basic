@@ -50,7 +50,7 @@ include "view/header.php";
                             <input type="password" class="form-control" id="password" name="password" value="">
                             <div class="input-group-prepend">
                                 <div class="input-group-text">
-                                    <input type="checkbox" id="showPass" aria-label="Checkbox for following text input">
+                                    <input type="checkbox" id="showPass" aria-label="Checkbox for following text input"> &nbsp; Jelszó mutatása
                                 </div>
                             </div>
                         </div>
