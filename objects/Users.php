@@ -152,15 +152,18 @@ class Users {
     // update the user profile
     function update() {
     
+        // if password needs to be updated
+        $password_set = !empty($this->password) ? ", password = :password" : "";
+
         // update query
         $query = "UPDATE " . $this->table_name . "
                 SET
                     name = :name,
-                    password = :password,
                     location = :location,
                     phone = :phone,
                     email = :email,
                     rank = :rank
+                    {$password_set}
                 WHERE
                     id = :id";
     
@@ -168,23 +171,27 @@ class Users {
         $stmt = $this->conn->prepare($query);
     
         // sanitize
-        $this->name=htmlspecialchars(strip_tags($this->name));
-        $this->password=htmlspecialchars(strip_tags($this->password));
-        $this->location=htmlspecialchars(strip_tags($this->location));
-        $this->phone=htmlspecialchars(strip_tags($this->phone));
-        $this->email=htmlspecialchars(strip_tags($this->email));
-        $this->rank= $this->rank;
-        $this->id=htmlspecialchars(strip_tags($this->id));
-    
-        $this->password = md5($this->password);
+        $this->name = htmlspecialchars(strip_tags($this->name));
+        $this->location = htmlspecialchars(strip_tags($this->location));
+        $this->phone = htmlspecialchars(strip_tags($this->phone));
+        $this->email = htmlspecialchars(strip_tags($this->email));
+        $this->rank = htmlspecialchars(strip_tags($this->rank));
+        $this->id = htmlspecialchars(strip_tags($this->id));
 
         // bind new values
         $stmt->bindParam(':name', $this->name);
-        $stmt->bindParam(':password', $this->password);
         $stmt->bindParam(':location', $this->location);
         $stmt->bindParam(':phone', $this->phone);
         $stmt->bindParam(':email', $this->email);
         $stmt->bindParam(':rank', $this->rank);
+
+        // hash the password before saving to database
+        if(!empty($this->password)){
+            $this->password = htmlspecialchars(strip_tags($this->password));
+            $password_hash = md5($this->password);
+            $stmt->bindParam(':password', $password_hash);
+        }
+
         $stmt->bindParam(':id', $this->id);
     
         // execute the query

@@ -28,7 +28,9 @@ $user->name = $data->name;
 $user->email = $data->email;
 $user->phone = $data->phone;
 $user->location = $data->location;
-$user->password = $data->password;
+if($data->password !== "") {
+    $user->password = $data->password;
+}
 $user->rank = $data->rank;
  
 // update the user
