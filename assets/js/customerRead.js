@@ -1,3 +1,6 @@
+var cookieValue = document.cookie;
+cookieValue = cookieValue.split(";");
+
 $(document).ready(function() {
     // load all user data from db
     getAllUsers();
@@ -101,12 +104,15 @@ $(document).ready(function() {
                     </div>
                     <div class="btn-group">
                         <button type="button" class="btn btn-primary mr-2 show-customer" data-id="${records[i].id}" title="Adatok megtekintése"><i class="fas fa-user"></i></i></button>
-                        <button type="button" class="btn btn-success edit-customer" data-id="${records[i].id}" title="Adatok szerkesztése"><i class="fas fa-user-edit"></i></button>
-                        <button type="button" class="btn btn-danger ml-2 delete-customer" data-id="${records[i].id}" title="Adatok törlése"><i class="fas fa-user-minus"></i></button>
-                    </div>
+                        <button type="button" class="btn btn-success edit-customer" data-id="${records[i].id}" title="Adatok szerkesztése"><i class="fas fa-user-edit"></i></button>`;
+
+                     if(cookieValue[0] == "rank=1") {
+                            values += `<button type="button" class="btn btn-danger ml-2 delete-customer" data-id="${records[i].id}" title="Adatok törlése"><i class="fas fa-user-minus"></i></button>`;
+                        }
+                   values += `</div>
                 </div>
             </div>
-            `;
+            `; 
         }
         values += '</div>';
         $("#customerCardDeck").html(values);

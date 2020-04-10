@@ -24,6 +24,9 @@ function login($user, $email, $password) {
                 $_SESSION["userName"] = $user->name;
                 $_SESSION["userRank"] = $user->rank;
 
+                $cookeiValue = $user->rank;
+                setcookie("rank", $cookeiValue);
+
                 $log = date("Y-m-d H:i:s")." Sikeres belépés a(z) {$email} címről ({$_SERVER['REMOTE_ADDR']})\n";
                 file_put_contents("log.txt", $log, FILE_APPEND);
 
