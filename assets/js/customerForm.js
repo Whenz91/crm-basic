@@ -29,6 +29,8 @@ $(document).ready(function() {
     nextPrev = function(n) {
         //get all elemnt with form-tab class
         var tabs = $(".form-tab");
+        // validate the name and email input values
+        if(n == 1 && !validateForm()) return false;
         // hide the current tab
         tabs[currentTab].style.display = "none";
         // increase or decrease the current tab by 1
@@ -53,6 +55,34 @@ $(document).ready(function() {
         }
         // add the active class only the current stepIndicator
         stepIndicators[index].classList.add("active");
+    }
+
+    function validateForm() {
+        let valid = true;
+        let name = $("#name").val();
+        let email = $("#email").val();
+        // Check customer name and email input is not empty
+        if(name == "" || email == "") {
+            $("#name").addClass("is-invalid");
+            $("#email").addClass("is-invalid");
+
+            $("#invalidName.invalid-feedback").css("display: block;");
+            $("#invalidEmail.invalid-feedback").css("display: block;");
+
+            valid = false;
+        } 
+
+        // Validate email format
+        if(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+            valid = true;
+        } else {
+            $("#email").addClass("is-invalid");
+            $("#invalidEmail.invalid-feedback").text("Helytelen email cím formátum. Kérlek ellenőrizd!");
+            $("#invalidEmail.invalid-feedback").css("display: block;");
+            valid = false;
+        }
+
+        return valid;
     }
 
     // collect data into one json and send back the server

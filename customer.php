@@ -22,6 +22,9 @@ include "view/header.php";
                 <div class="form-group">
                     <label for="name">Teljes név</label>
                     <input type="text" class="form-control" id="name" name="name" placeholder="Kovács István" value="">
+                    <div class="invalid-feedback" id="invalidName">
+                        Kérlek add meg az új kontakt személy nevét!
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="post">Beosztás/Pozició</label>
@@ -34,6 +37,9 @@ include "view/header.php";
                 <div class="form-group">
                     <label for="email">Email cím</label>
                     <input type="email" class="form-control" id="email" name="email" placeholder="k.istvan@gmail.com" value="">
+                    <div class="invalid-feedback" id="invalidEmail">
+                        Kérlek add meg a kontakt személy email címét!
+                    </div>
                 </div>
                 <input type="text" name="userId" id="userId" value="<?php echo $_SESSION["userId"] ?>" class="d-none">
             </div>
@@ -43,6 +49,9 @@ include "view/header.php";
                 <div class="form-group">
                     <label for="companyName">Cég neve</label>
                     <input type="text" class="form-control" id="companyName" name="companyName" placeholder="Minta Kft" value="">
+                    <div class="invalid-feedback" id="invalidCompany">
+                        Kérlek add meg az új partner cég nevét!
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="companyAddress">Cég címe</label>
